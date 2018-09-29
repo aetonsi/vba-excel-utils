@@ -1,0 +1,13 @@
+Public Sub workbook_backup(Optional ByVal directory As String = BACKUPS_DIR, Optional ByVal forceBackup As Boolean = False)
+'depends on: filesystem_FileOrFolderExists, string_quote, filesystem_realpath
+    ChDir ThisWorkbook.path
+    Dim today As String: today = Format(Date, "yyyy-mm-dd")
+    Dim wbkBckFolder As String: wbkBckFolder = filesystem_realpath(directory)
+    Dim wbkBckName As String: wbkBckName = filesystem_basename(ThisWorkbook.FullName, False) & "_" & today & "." & filesystem_basename(ThisWorkbook.FullName, True, True)
+    Dim wbkBckFullPath As String: wbkBckFullPath = wbkBckFolder & "\" & wbkBckName
+    If forceBackup Or Not filesystem_FileOrFolderExists(wbkBckFullPath) Then
+        Call process_shell("mkdir " & string_quote(wbkBckFolder), True)
+        Call process_shell("copy /-Y " & string_quote(ThisWorkbook.FullName) & " " & string_quote(wbkBckFullPath) & " & exit", False, True)
+        If Not forceBackup Then frmMsgbox.XXX "daily backup has been created in '" & wbkBckFolder & "'"
+    End If
+End Sub

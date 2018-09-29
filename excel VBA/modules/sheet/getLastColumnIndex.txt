@@ -1,0 +1,11 @@
+Public Function sheet_getLastColumnIndex(Optional ByVal sheetIndex As Integer = -1)
+'depends on: /
+    sheet_getLastColumnIndex = 1
+    Dim s: Set s = ThisWorkbook.ActiveSheet: If sheetIndex <> -1 Then Set s = ThisWorkbook.Sheets(sheetIndex)
+    On Error GoTo err
+    Dim rLastCell As Range
+    Set rLastCell = s.Cells.find(What:="*", After:=s.Cells(1, 1), LookIn:=xlFormulas, LookAt:= _
+        xlPart, SearchOrder:=xlByColumns, SearchDirection:=xlPrevious, MatchCase:=False)
+    sheet_getLastColumnIndex = rLastCell.column
+err:
+End Function

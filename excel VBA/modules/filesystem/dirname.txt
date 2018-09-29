@@ -1,0 +1,11 @@
+Public Function filesystem_dirname(ByVal path As String) As String
+'depends on: Scripting.FileSystemObject, filesystem_FileOrFolderExists
+    ChDir ThisWorkbook.path
+    If Not filesystem_FileOrFolderExists(path) Then
+        filesystem_dirname = False
+    Else
+        Dim fso As New Scripting.FileSystemObject
+        filesystem_dirname = fso.GetParentFolderName(path)
+    End If
+End Function
+

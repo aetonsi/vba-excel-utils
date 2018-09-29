@@ -1,0 +1,17 @@
+Public Function filesystem_basename(ByVal path As String, Optional ByVal extension As Boolean = True, Optional ByVal extensionOnly As Boolean = False) As String
+'depends on: Scripting.FileSystemObject, filesystem_FileOrFolderExists
+    If Not filesystem_FileOrFolderExists(path) Then
+        filesystem_basename = False
+    Else
+        Dim fso As New Scripting.FileSystemObject
+        If (Not fso.FolderExists(path)) And extension Then
+            If extensionOnly Then
+                filesystem_basename = fso.GetExtensionName(path)
+            Else
+                filesystem_basename = fso.GetBaseName(path) & "." & fso.GetExtensionName(path)
+            End If
+        Else
+            filesystem_basename = fso.GetBaseName(path)
+        End If
+    End If
+End Function

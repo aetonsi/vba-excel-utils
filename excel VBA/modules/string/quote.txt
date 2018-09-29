@@ -1,0 +1,4 @@
+Public Function string_quote(ByVal str As String) As String
+'depends on: /
+    string_quote = Chr(34) & str & Chr(34)
+End Function
