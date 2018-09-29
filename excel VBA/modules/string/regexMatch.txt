@@ -1,9 +1,0 @@
-Public Function string_regexMatch(ByVal strInput As String, ByVal regexpattern As String) As Boolean
-'depends on: /
-    Dim objRegex As Object
-    Set objRegex = CreateObject("vbscript.regexp")
-    With objRegex
-        .Pattern = regexpattern
-        string_regexMatch = .Test(strInput)
-    End With
-End Function

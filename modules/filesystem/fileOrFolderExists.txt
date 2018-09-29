@@ -1,0 +1,16 @@
+Public Function filesystem_FileOrFolderExists(ByVal path As String) As Boolean 'file or folder exist
+'depends on: Scripting.FileSystemObject
+    Dim fso As New Scripting.FileSystemObject
+    filesystem_FileOrFolderExists = fso.FileExists(path) Or fso.FolderExists(path)
+End Function
+
+Public Function filesystem_realpath(ByVal path As String) As String
+'depends on: Scripting.FileSystemObject, filesystem_FileOrFolderExists
+    ChDir ThisWorkbook.path
+    If Not filesystem_FileOrFolderExists(path) Then
+        filesystem_realpath = False
+    Else
+        Dim fso As New Scripting.FileSystemObject
+        filesystem_realpath = fso.GetAbsolutePathName(path)
+    End If
+End Function

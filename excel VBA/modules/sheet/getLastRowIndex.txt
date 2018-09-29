@@ -1,7 +1,0 @@
-Public Function sheet_getLastRowIndex(ByVal column As Integer, Optional ByVal sheetIndex As Integer = -1)
-'depends on: /
-    sheet_getLastRowIndex = 1
-    Dim s: Set s = ThisWorkbook.ActiveSheet: If sheetIndex <> -1 Then Set s = ThisWorkbook.Sheets(sheetIndex)
-    On Error Resume Next
-    sheet_getLastRowIndex = s.Columns(column).Cells.find("*", SearchOrder:=xlByRows, LookIn:=xlValues, SearchDirection:=xlPrevious).Row
-End Function

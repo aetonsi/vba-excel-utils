@@ -1,0 +1,9 @@
+Public Function string_capitalize(ByVal s As String) As String
+'depends on: /
+    Dim ss() As String
+    ss = Split(s, " ")
+    For i = 0 To UBound(ss)
+        ss(i) = UCase(Left(ss(i), 1)) & Mid(ss(i), 2)
+    Next i
+    string_capitalize = Join(ss, " ")
+End Function

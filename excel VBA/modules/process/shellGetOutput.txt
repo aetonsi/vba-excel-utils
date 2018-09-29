@@ -1,6 +1,0 @@
-Public Function process_shellGetOutput(command As String) As String
-'depends on: process_shell
-    Dim executor As Object
-    Set executor = process_shell(command, False, False)
-    process_shellGetOutput = executor.StdOut.ReadAll
-End Function
