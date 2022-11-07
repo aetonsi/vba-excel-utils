@@ -1,2 +1,2 @@
 # vba-excel-utils
-VBA MS Excel scripts
+Collection of random VBA for Excel utils (forms, modules).
